@@ -10,13 +10,40 @@
     "assetType": "Steel fabrication plants, shipyards and heavy-equipment factories with recurring manual welding",
     "buyerPersona": "VP of Operations or Plant Manager responsible for welding throughput",
     "icp": [
-      { "label": "Industry", "value": "US steel fabrication, shipbuilding, heavy equipment and defense manufacturing", "confidence": 0.85 },
-      { "label": "Production profile", "value": "High-mix steel parts where fit-up varies from part to part", "confidence": 0.8 },
-      { "label": "Trigger", "value": "Public plant expansion or a welder hiring push", "confidence": 0.75 },
-      { "label": "Buying model", "value": "Prefers subscription or outsourced capacity to a capital purchase", "confidence": 0.55 }
+      {
+        "label": "Industry",
+        "value": "US steel fabrication, shipbuilding, heavy equipment and defense manufacturing",
+        "confidence": 0.85
+      },
+      {
+        "label": "Production profile",
+        "value": "High-mix steel parts where fit-up varies from part to part",
+        "confidence": 0.8
+      },
+      {
+        "label": "Trigger",
+        "value": "Public plant expansion or a welder hiring push",
+        "confidence": 0.75
+      },
+      {
+        "label": "Buying model",
+        "value": "Prefers subscription or outsourced capacity to a capital purchase",
+        "confidence": 0.55
+      }
     ],
-    "competitors": ["Lincoln Electric", "Hirebotics", "Vectis Automation", "FANUC", "ABB Robotics", "Novarc"],
-    "expansion": ["Path Foundry contract welding capacity", "Rove mobile autonomous welding for large structures", "Shipbuilding and defense supply chains"]
+    "competitors": [
+      "Lincoln Electric",
+      "Hirebotics",
+      "Vectis Automation",
+      "FANUC",
+      "ABB Robotics",
+      "Novarc"
+    ],
+    "expansion": [
+      "Path Foundry contract welding capacity",
+      "Rove mobile autonomous welding for large structures",
+      "Shipbuilding and defense supply chains"
+    ]
   },
   "targets": [
     {
@@ -28,7 +55,7 @@
       "lon": -90.67,
       "fit": 88,
       "reason": {
-        "text": "$25M expansion running through 2026 explicitly grows robotic welding, so the budget line and appetite already exist.",
+        "text": "$25M expansion running through 2026 explicitly grows robotic welding, so the budget line and appetite already exist (source from November 2024).",
         "url": "https://www.plantservices.com/industry-news/news/55244378/steel-fabricator-invests-25m-to-expand-manufacturing-facility-in-louisiana",
         "quote": "will increase robotic welding capacity by 50%"
       },
@@ -239,7 +266,12 @@
       "No Path performance figure is assumed; results come only from the pilot's measurements."
     ],
     "successTest": "Pilot passes if welds per shift on the chosen part family improve by {pct}% against Southland's measured manual baseline, with parts passing Southland's existing quality inspection.",
-    "approvers": ["VP of Operations", "Quality Manager", "Plant Manager", "Finance Lead"],
+    "approvers": [
+      "VP of Operations",
+      "Quality Manager",
+      "Plant Manager",
+      "Finance Lead"
+    ],
     "risks": [
       "An incumbent robotic welding vendor may already cover this work.",
       "The 2024 source may not reflect how much of the expansion is now committed.",

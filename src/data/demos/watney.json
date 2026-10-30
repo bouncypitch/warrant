@@ -59,7 +59,7 @@
       },
       "buyerRole": "Head of data center operations, Meta",
       "buyerConfirmed": true,
-      "pathType": "warm",
+      "pathType": "direct",
       "pathNote": "Warm only in the public sense: Meta's Altoona pilot of Watney robots is publicly reported. No personal introduction is known. Placeholder assumption. Deal value and win rate are not sourced.",
       "disqualifier": null,
       "assumedDealValue": 2000000,
