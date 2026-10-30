@@ -11,6 +11,6 @@ export async function GET() {
     Neo4j: graphReady(),
     Hunter: Boolean(process.env.HUNTER_API_KEY),
     Email: Boolean(process.env.RESEND_API_KEY && process.env.DEMO_INBOX),
-    Phone: Boolean(process.env.VAPI_API_KEY && process.env.VAPI_PHONE_NUMBER_ID && process.env.DEMO_PHONE_NUMBER),
+    Voice: Boolean(process.env.NEXT_PUBLIC_VAPI_PUBLIC_KEY),
   });
 }

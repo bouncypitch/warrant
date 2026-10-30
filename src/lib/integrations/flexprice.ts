@@ -8,13 +8,13 @@ const wallet = process.env.FLEXPRICE_WALLET_ID;
 
 const client = key ? new Flexprice({ serverURL: host, apiKeyAuth: key }) : null;
 
-export async function meter(eventName: string, credits: number) {
+export async function meter(stage: string, credits: number) {
   if (!client) return;
   try {
     await client.events.ingestEvent({
-      eventName,
+      eventName: "warrant.credits",
       externalCustomerId: customer,
-      properties: { credits: String(credits) },
+      properties: { credits: String(credits), stage },
       source: "warrant",
     });
   } catch (error) {

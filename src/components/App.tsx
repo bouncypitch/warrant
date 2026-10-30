@@ -1,6 +1,7 @@
 "use client";
 
 import { type FormEvent, useEffect, useMemo, useRef, useState } from "react";
+import Vapi from "@vapi-ai/web";
 import { demos } from "@/lib/demos";
 import type { Claim, Draft, PilotPack, Profile, Run, RunEvent, Target } from "@/lib/types";
 import { evaluate, isSourced, SCOUT_CREDITS } from "@/lib/warrant";
@@ -11,7 +12,7 @@ const TABS = ["Map", "Leads", "Pilot Pack", "Review", "Approve", "Pipeline"] as 
 type Tab = (typeof TABS)[number];
 type Log = { text: string; hot?: boolean };
 type Hearing = { from: string; to: string; text: string; tone?: "good" | "bad" };
-type Delivery = { email: string; call: string; callId: string | null };
+type Delivery = { email: string; voiceAgent: Parameters<Vapi["start"]>[0] };
 type Attempt = { text: string; supported: boolean; reason: string; checkedBy: string };
 
 type Session = {
@@ -128,6 +129,11 @@ export function App() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(run),
+      });
+      void fetch("/api/credits", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ credits: 10 + run.targets.length * SCOUT_CREDITS, stage: "demo.replayed" }),
       });
     });
   };
@@ -246,12 +252,25 @@ export function App() {
 }
 
 function CreditMeter({ spent }: { spent: number }) {
-  const left = Math.max(0, CREDITS - spent);
+  const [balance, setBalance] = useState<number | null>(null);
+
+  useEffect(() => {
+    const read = async () => {
+      const response = await fetch("/api/credits");
+      const body = (await response.json()) as { left: number | null; live: boolean };
+      if (body.live) setBalance(body.left);
+    };
+    void read();
+    const timer = setInterval(read, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const left = balance ?? Math.max(0, CREDITS - spent);
   return (
     <div className="meter">
-      <span>Credits</span>
-      <div className="bar"><i style={{ width: `${(left / CREDITS) * 100}%` }} /></div>
-      <span>{left} / {CREDITS}</span>
+      <span>{balance === null ? "Credits" : "Flexprice credits"}</span>
+      <div className="bar"><i style={{ width: `${Math.min(100, (left / CREDITS) * 100)}%` }} /></div>
+      <span>{Math.round(left)} / {CREDITS}</span>
     </div>
   );
 }
@@ -473,20 +492,39 @@ function Review({ draft, hearing }: { draft: Draft | null; hearing: Hearing[] })
 
 function Approve({ company, hero, draft, approved, setApproved }: { company: string; hero: Target | null; draft: Draft | null; approved: boolean; setApproved: (value: boolean) => void }) {
   const [delivery, setDelivery] = useState<Delivery | null>(null);
-  const [transcript, setTranscript] = useState("");
+  const [lines, setLines] = useState<string[]>([]);
+  const [calling, setCalling] = useState(false);
   const [problem, setProblem] = useState<string | null>(null);
+  const voice = useRef<Vapi | null>(null);
 
-  useEffect(() => {
-    if (!delivery?.callId) return;
-    const timer = setInterval(async () => {
-      const response = await fetch(`/api/call?id=${delivery.callId}`);
-      if (!response.ok) return;
-      const call = (await response.json()) as { status: string; transcript: string };
-      setTranscript(call.transcript);
-      if (call.status === "ended") clearInterval(timer);
-    }, 2000);
-    return () => clearInterval(timer);
-  }, [delivery?.callId]);
+  useEffect(() => () => void voice.current?.stop(), []);
+
+  const toggleCall = async () => {
+    if (calling) {
+      await voice.current?.stop();
+      return;
+    }
+    const publicKey = process.env.NEXT_PUBLIC_VAPI_PUBLIC_KEY;
+    if (!publicKey || !delivery) {
+      setProblem("Voice isn't connected.");
+      return;
+    }
+    const client = new Vapi(publicKey);
+    voice.current = client;
+    setLines([]);
+    client.on("call-start", () => setCalling(true));
+    client.on("call-end", () => setCalling(false));
+    client.on("error", () => {
+      setCalling(false);
+      setProblem("The voice call failed.");
+    });
+    client.on("message", (message: { type: string; role?: string; transcript?: string; transcriptType?: string }) => {
+      if (message.type === "transcript" && message.transcriptType === "final") {
+        setLines((items) => [...items, `${message.role === "assistant" ? "Agent" : "You"}: ${message.transcript}`]);
+      }
+    });
+    await client.start(delivery.voiceAgent);
+  };
 
   if (!hero || !draft) return <p className="empty">Nothing is ready for approval yet.</p>;
   const decision = evaluate(hero);
@@ -533,14 +571,20 @@ function Approve({ company, hero, draft, approved, setApproved }: { company: str
         </button>
         {problem && <p className="bad">{problem}</p>}
         <p className="tag">
-          {!approved && "Nothing goes out without a person approving it. Delivery only ever goes to your own test inbox and phone."}
+          {!approved && "Nothing goes out without a person approving it. Email only ever goes to your test inbox."}
           {approved && !delivery && !problem && "Approved. Delivering…"}
-          {delivery && `Test email: ${delivery.email}. Test call: ${delivery.call}.`}
+          {delivery && `Test email: ${delivery.email}.`}
         </p>
-        {delivery?.callId && (
+        {delivery && (
+          <button className="ghost" onClick={toggleCall}>
+            {calling ? "End voice call" : "Start voice call"}
+          </button>
+        )}
+        {(calling || lines.length > 0) && (
           <div className="panel log">
             <div className="eyebrow">Live call transcript</div>
-            <p className="hot">{transcript || "Ringing…"}</p>
+            {lines.length === 0 && <p className="hot">Connecting…</p>}
+            {lines.map((line, index) => <p key={index} className="hot">{line}</p>)}
           </div>
         )}
       </div>

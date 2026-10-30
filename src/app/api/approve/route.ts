@@ -25,42 +25,25 @@ async function sendEmail(draft: Draft) {
   return error ? "failed" : "sent";
 }
 
-async function placeCall(company: string, target: Target, draft: Draft) {
-  const { VAPI_API_KEY: key, VAPI_PHONE_NUMBER_ID: phone, DEMO_PHONE_NUMBER: number } = process.env;
-  if (!key || !phone || !number) return { status: "not connected", id: null };
-
+const voiceAgent = (company: string, target: Target, draft: Draft) => {
   const facts = draft.claims.filter(isSourced).map((claim) => `- ${claim.text}`).join("\n");
-  const response = await fetch("https://api.vapi.ai/call", {
-    method: "POST",
-    headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
-    body: JSON.stringify({
-      phoneNumberId: phone,
-      customer: { number },
-      assistant: {
-        firstMessage: `Hi, I'm an AI agent in a live demonstration. I'm calling about a pilot for ${target.name}. Is now a good time?`,
-        model: {
-          provider: "anthropic",
-          model: process.env.VAPI_MODEL ?? "claude-sonnet-4-6",
-          messages: [
-            {
-              role: "system",
-              content: `You are an AI agent in a labeled demonstration of Warrant, showing how ${company} might discuss a pilot. Keep replies under two sentences.
+  return {
+    firstMessage: `Hi, I'm an AI agent in a live demonstration. I'd like to talk about a pilot for ${target.name}. Is now a good time?`,
+    model: {
+      provider: "anthropic",
+      model: process.env.VAPI_MODEL ?? "claude-sonnet-4-6",
+      messages: [
+        {
+          role: "system",
+          content: `You are an AI agent in a labeled demonstration of Warrant, showing how ${company} might discuss a pilot. Keep replies under two sentences.
 You may state only these sourced facts:
 ${facts}
 Your goal is to agree what a successful pilot would prove. If asked for anything not listed, including numbers or guarantees, say "I don't have a source for that, so I won't claim it."`,
-            },
-          ],
         },
-      },
-    }),
-  });
-  if (!response.ok) {
-    console.error("Vapi call failed", response.status, await response.text());
-    return { status: "failed", id: null };
-  }
-  const call = (await response.json()) as { id: string };
-  return { status: "calling", id: call.id };
-}
+      ],
+    },
+  };
+};
 
 export async function POST(request: Request) {
   const parsed = BodySchema.safeParse(await request.json());
@@ -76,6 +59,8 @@ export async function POST(request: Request) {
     return Response.json({ error: "No sourced claims remain, so nothing was sent." }, { status: 409 });
   }
 
-  const [email, call] = await Promise.all([sendEmail(draft), placeCall(company, target, draft)]);
-  return Response.json({ email, call: call.status, callId: call.id });
+  return Response.json({
+    email: await sendEmail(draft),
+    voiceAgent: voiceAgent(company, target, draft),
+  });
 }

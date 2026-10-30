@@ -35,11 +35,11 @@ Warm-path edges such as `previously_employed_at` are planned, and need a sourced
 | Service | Role | File |
 |---|---|---|
 | Band | Planner, Builder, Reviewer, and Security post in a shared room under their own identities, using @mentions | `src/lib/integrations/band.ts` |
-| Flexprice | Metered events for each stage, with a wallet balance check that limits scouts | `src/lib/integrations/flexprice.ts` |
+| Flexprice | Metered credit events priced against a prepaid wallet, whose real-time balance limits scouts | `src/lib/integrations/flexprice.ts` |
 | Neo4j | Stores runs and answers path queries | `src/lib/integrations/graph.ts` |
 | Hunter | Finds a contact for the top target | `src/lib/integrations/hunter.ts` |
 | Resend | Sends approved email to the test inbox | `src/app/api/approve/route.ts` |
-| Vapi | Places the approved call to the test phone | `src/app/api/approve/route.ts` |
+| Vapi | Runs the approved browser voice call | `src/components/App.tsx` |
 | Snyk | SAST and dependency scans in CI | `.github/workflows/security.yml` |
 
 ## Models
