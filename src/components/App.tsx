@@ -119,6 +119,11 @@ export function App() {
         { text: `${passed} passed, ${run.targets.length - passed} refused`, hot: true },
       ]);
       patch({ pack: run.pack, draft: run.draft, running: false, hearing: preparedHearing(run) });
+      void fetch("/api/band", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title: `Warrant: ${run.pack.title}`, hearing: preparedHearing(run) }),
+      });
       void fetch("/api/graph", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -195,9 +200,8 @@ export function App() {
       <header>
         <button className="home" onClick={() => reset(null)}>
           <span className="mark" aria-hidden="true" />
-          <span className="brand">Warrant</span>
+          <span className="brand">Warrant - GTM Engine for Physical AI</span>
         </button>
-        <span className="tag">The GTM Engine for Physical AI</span>
         {session && <CreditMeter spent={session.spent} />}
       </header>
 

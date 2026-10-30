@@ -1,6 +1,6 @@
-# Warrant
+# Warrant - GTM Engine for Physical AI
 
-The GTM Engine for Physical AI: from site, to pilot, to first order.
+From site, to pilot, to first order.
 
 Warrant researches any robotics company, finds real target customers, and builds a Pilot Pack for the best one. It refuses to contact anyone until a lead has a cited reason, a path in, positive expected value, verified claims, and human approval.
 

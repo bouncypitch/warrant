@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Warrant",
+  title: "Warrant - GTM Engine for Physical AI",
   description: "The GTM Engine for Physical AI",
 };
 
