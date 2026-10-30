@@ -2,7 +2,7 @@
 
 ![Warrant - GTM Engine for Physical AI](public/brand/social-preview.png)
 
-**[Live app](https://warrant-sepia.vercel.app)** · **[Demo video](https://warrant-sepia.vercel.app/demo/warrant-demo.mp4)**
+**[Live app](https://warrant-sepia.vercel.app)** · **[Demo video](https://warrant-sepia.vercel.app/demo/warrant-demo.mp4)** · **[Project story](https://bouncypitch.github.io/warrant/)**
 
 From site, to pilot, to first order.
 
