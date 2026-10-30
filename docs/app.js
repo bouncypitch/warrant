@@ -117,7 +117,7 @@ replay.observe(room);
     view.lat += (focus[1] - view.lat) * pull;
     const age = still ? 99 : (now - started) / 1000;
 
-    const projection = d3.geoOrthographic().translate([box.width / 2, box.height / 2 - 24]).scale(Math.min(box.width, box.height) * 0.46).rotate([-view.lon, -view.lat]).clipAngle(90);
+    const projection = d3.geoOrthographic().translate([box.width / 2, (box.height - 90) / 2]).scale(Math.min(box.width, box.height - 100) * 0.48).rotate([-view.lon, -view.lat]).clipAngle(90);
     const path = d3.geoPath(projection, ctx);
     ctx.beginPath(); path({ type: "Sphere" });
     const glow = ctx.createRadialGradient(box.width * 0.42, box.height * 0.32, 10, box.width / 2, box.height / 2, box.width * 0.6);
