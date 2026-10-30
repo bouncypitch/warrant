@@ -14,7 +14,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Warrant - GTM Engine for Physical AI",
-  description: "The GTM Engine for Physical AI",
+  description: "From site, to pilot, to first order.",
+  metadataBase: new URL("https://warrant-sepia.vercel.app"),
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

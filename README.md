@@ -1,5 +1,9 @@
 # Warrant - GTM Engine for Physical AI
 
+![Warrant - GTM Engine for Physical AI](public/brand/social-preview.png)
+
+**[Live app](https://warrant-sepia.vercel.app)** · **[Demo video](https://warrant-sepia.vercel.app/demo/warrant-demo.mp4)**
+
 From site, to pilot, to first order.
 
 Warrant researches any robotics company, finds real target customers, and builds a Pilot Pack for the best one. It refuses to contact anyone until a lead has a cited reason, a path in, positive expected value, verified claims, and human approval.
@@ -30,3 +34,7 @@ These are public examples with no affiliation. Their outreach is draft-only, sel
 - Email goes only to `DEMO_INBOX`.
 
 See [ARCHITECTURE.md](ARCHITECTURE.md) for the design.
+
+## Brand assets
+
+The logo, share image, and demo video are in [`public/brand`](public/brand) and [`public/demo`](public/demo).
