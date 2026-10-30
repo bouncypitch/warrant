@@ -1,0 +1,307 @@
+{
+  "company": "Watney Robotics",
+  "act": "Compute",
+  "prepared": true,
+  "researchedOn": "2026-10-30",
+  "profile": {
+    "name": "Watney Robotics",
+    "website": "https://watney.com/",
+    "summary": "San Francisco startup building dual-arm robots for hyperscale data center maintenance: cable replacement, power-cycling servers, reseating parts and inspection. Meta is its publicly reported pilot, with two robots at Altoona, Iowa. These are pilots, not a commercial contract at scale.",
+    "assetType": "AI data center campus",
+    "buyerPersona": "Head of data center operations at a hyperscaler or large AI campus operator",
+    "icp": [
+      {
+        "label": "Segment",
+        "value": "Hyperscalers and AI campus operators in the US",
+        "confidence": 0.85
+      },
+      {
+        "label": "Trigger",
+        "value": "Large campus with scarce skilled technicians in a thin local labor market",
+        "confidence": 0.65
+      },
+      {
+        "label": "Workload",
+        "value": "Repetitive supervised rack work: cable swaps, power-cycling, reseating",
+        "confidence": 0.8
+      },
+      {
+        "label": "Buyer",
+        "value": "Data center operations leadership, starting with a supervised pilot",
+        "confidence": 0.6
+      }
+    ],
+    "competitors": [
+      "ABB",
+      "Kinova",
+      "Exclaim Robotics",
+      "Proprio Robotics"
+    ],
+    "expansion": [
+      "Other Meta campuses after Altoona",
+      "Colocation and neocloud operators",
+      "Other critical infrastructure beyond data centers, per Watney's stated 'starting with data centers'"
+    ]
+  },
+  "targets": [
+    {
+      "id": "hyperion",
+      "name": "Meta Hyperion",
+      "kind": "AI data center campus, under construction; operator Meta",
+      "location": "Holly Ridge, Richland Parish, Louisiana",
+      "lat": 32.477149,
+      "lon": -91.632333,
+      "fit": 88,
+      "reason": {
+        "text": "Meta expects 1,000 permanent jobs at a remote parish of 20,000 residents, and Meta already pilots Watney robots elsewhere.",
+        "url": "https://kpel965.com/meta-hyperion-data-center-expansion-richland/",
+        "quote": "Permanent jobs will double to 1,000 once both phases of the project are fully operational"
+      },
+      "buyerRole": "Head of data center operations, Meta",
+      "buyerConfirmed": true,
+      "pathType": "warm",
+      "pathNote": "Warm only in the public sense: Meta's Altoona pilot of Watney robots is publicly reported. No personal introduction is known. Placeholder assumption. Deal value and win rate are not sourced.",
+      "disqualifier": null,
+      "assumedDealValue": 2000000,
+      "assumedWinRate": 0.3
+    },
+    {
+      "id": "prometheus",
+      "name": "Meta Prometheus",
+      "kind": "AI data center campus, online and expanding; operator Meta",
+      "location": "New Albany, Ohio (approx.)",
+      "lat": 40.08,
+      "lon": -82.76,
+      "fit": 80,
+      "reason": {
+        "text": "Meta is already trialing maintenance robots here, from ABB, so the need is proven and the slot has an incumbent.",
+        "url": "https://tech-insider.org/meta-watney-robots-data-center-technicians-2026/",
+        "quote": "ABB, the Zurich-based industrial automation giant, is testing four-wheeled mobile platforms equipped with a lift mechanism and a six-axis robotic arm at the Prometheus campus"
+      },
+      "buyerRole": "Head of data center operations, Meta",
+      "buyerConfirmed": true,
+      "pathType": "displacement",
+      "pathNote": "Displace or sit beside the ABB pilot, on cable work rather than reseating. Sources disagree on whether Watney itself is also trialing here. Placeholder assumption. Deal value and win rate are not sourced.",
+      "disqualifier": null,
+      "assumedDealValue": 1500000,
+      "assumedWinRate": 0.25
+    },
+    {
+      "id": "fairwater",
+      "name": "Microsoft Fairwater",
+      "kind": "AI data center campus; operator Microsoft",
+      "location": "Mount Pleasant, Wisconsin (approx.)",
+      "lat": 42.71,
+      "lon": -87.9,
+      "fit": 70,
+      "reason": {
+        "text": "The fiber volume implies a large cable-maintenance load. That need is inferred; Microsoft has not stated it.",
+        "url": "https://news.microsoft.com/de-ch/2025/09/18/microsoft-builds-worlds-most-powerful-ai-datacenter/",
+        "quote": "hundreds of thousands of NVIDIA GPUs connected by enough fiber to circle the Earth 4.5 times"
+      },
+      "buyerRole": "Datacenter operations lead, Microsoft",
+      "buyerConfirmed": true,
+      "pathType": "direct",
+      "pathNote": "No public relationship found; cold outreach to the operations team. Placeholder assumption. Deal value and win rate are not sourced.",
+      "disqualifier": null,
+      "assumedDealValue": 1500000,
+      "assumedWinRate": 0.12
+    },
+    {
+      "id": "abilene",
+      "name": "Stargate Abilene",
+      "kind": "AI data center campus; developed by Crusoe, cloud capacity from Oracle, for OpenAI",
+      "location": "Near Abilene, Texas (approx.)",
+      "lat": 32.5,
+      "lon": -99.78,
+      "fit": 66,
+      "reason": {
+        "text": "A local builder reports the site has drained skilled trades from the area. This is construction labor, not operations staff.",
+        "url": "https://www.insurancejournal.com/news/southcentral/2026/04/29/867616.htm",
+        "quote": "My electrician, he lost two of his lead men and several of his helpers to the data center"
+      },
+      "buyerRole": "Site operations lead, Oracle or Crusoe (owner of operations role not confirmed)",
+      "buyerConfirmed": true,
+      "pathType": "direct",
+      "pathNote": "No public relationship found; cold outreach. Which party runs day-to-day maintenance needs confirming. Placeholder assumption. Deal value and win rate are not sourced.",
+      "disqualifier": null,
+      "assumedDealValue": 1000000,
+      "assumedWinRate": 0.12
+    },
+    {
+      "id": "port-washington",
+      "name": "Vantage Port Washington",
+      "kind": "AI data center campus, under construction; operator Vantage Data Centers",
+      "location": "Port Washington, Wisconsin (approx.)",
+      "lat": 43.39,
+      "lon": -87.88,
+      "fit": 60,
+      "reason": {
+        "text": "Vantage is staffing up to 1,000 permanent roles on a 2028 campus, leaving time to design robots in. Need is inferred from headcount.",
+        "url": "https://dailyreporter.com/2025/12/18/15-billion-vantage-data-center-breaks-ground-in-port-washington/",
+        "quote": "expected to create more than 4,000 construction jobs and 1,000 permanent jobs"
+      },
+      "buyerRole": "VP of data center operations, Vantage Data Centers",
+      "buyerConfirmed": true,
+      "pathType": "direct",
+      "pathNote": "No public relationship found; cold outreach. Placeholder assumption. Deal value and win rate are not sourced.",
+      "disqualifier": null,
+      "assumedDealValue": 800000,
+      "assumedWinRate": 0.1
+    },
+    {
+      "id": "saline",
+      "name": "Stargate Michigan",
+      "kind": "AI data center campus, announced; Related Digital developing for Oracle, with OpenAI",
+      "location": "Saline Township, Michigan (approx.)",
+      "lat": 42.15,
+      "lon": -83.78,
+      "fit": 55,
+      "reason": {
+        "text": "A gigawatt-plus site with only about 450 on-site jobs suggests thin staffing per megawatt. Need is inferred; current build status unconfirmed.",
+        "url": "https://www.hpcwire.com/off-the-wire/openai-oracle-and-related-digital-announce-stargate-data-center-site-in-michigan/",
+        "quote": "collectively create more than 450 jobs onsite"
+      },
+      "buyerRole": "Data center operations lead, Oracle",
+      "buyerConfirmed": true,
+      "pathType": "direct",
+      "pathNote": "No public relationship found; cold outreach. Placeholder assumption. Deal value and win rate are not sourced.",
+      "disqualifier": null,
+      "assumedDealValue": 800000,
+      "assumedWinRate": 0.08
+    },
+    {
+      "id": "colossus-2",
+      "name": "xAI Colossus 2",
+      "kind": "AI data center campus; operator xAI",
+      "location": "Memphis, Tennessee (approx.)",
+      "lat": 35.0,
+      "lon": -90.03,
+      "fit": 35,
+      "reason": null,
+      "buyerRole": "Data center operations lead, xAI",
+      "buyerConfirmed": true,
+      "pathType": "none",
+      "pathNote": "No sourced route in and no sourced need.",
+      "disqualifier": "No sourced need: nothing found on technician or maintenance demand at this site, and reports on its status and GPU count conflict.",
+      "assumedDealValue": 1000000,
+      "assumedWinRate": 0.05
+    },
+    {
+      "id": "caledonia",
+      "name": "Microsoft Caledonia",
+      "kind": "Cancelled data center campus; proposed by Microsoft",
+      "location": "Caledonia, Wisconsin (approx.)",
+      "lat": 42.81,
+      "lon": -87.92,
+      "fit": 10,
+      "reason": {
+        "text": "Cancelled after local opposition.",
+        "url": "https://www.techrepublic.com/article/news-microsoft-scraps-caledonia-data-center-plan/",
+        "quote": "Microsoft scrapped a 244-acre data center in Caledonia"
+      },
+      "buyerRole": "Datacenter operations lead, Microsoft",
+      "buyerConfirmed": true,
+      "pathType": "none",
+      "pathNote": "No campus to sell into.",
+      "disqualifier": "Cancelled: Microsoft dropped the site in October 2025.",
+      "assumedDealValue": 0,
+      "assumedWinRate": 0
+    },
+    {
+      "id": "chesterton",
+      "name": "Provident Chesterton",
+      "kind": "Withdrawn data center complex; developer Provident Realty Advisors",
+      "location": "Chesterton, Indiana (approx.)",
+      "lat": 41.61,
+      "lon": -87.06,
+      "fit": 8,
+      "reason": {
+        "text": "Plan rescinded by the developer.",
+        "url": "https://en.wikipedia.org/wiki/Opposition_to_AI_data_centers",
+        "quote": "Provident released a statement shortly after rescinding their plan"
+      },
+      "buyerRole": "Unknown hyperscaler end user, never named",
+      "buyerConfirmed": false,
+      "pathType": "none",
+      "pathNote": "No named operator and no campus.",
+      "disqualifier": "Cancelled: developer rescinded the plan.",
+      "assumedDealValue": 0,
+      "assumedWinRate": 0
+    },
+    {
+      "id": "tract-buckeye",
+      "name": "Tract Goodyear and Buckeye",
+      "kind": "Withdrawn $14B data center project; developer Tract",
+      "location": "Goodyear and Buckeye, Arizona (approx.)",
+      "lat": 33.44,
+      "lon": -112.58,
+      "fit": 12,
+      "reason": {
+        "text": "Original project withdrawn. A revised project near the Buckeye airport was later announced, but Tract is a developer with no sourced operator.",
+        "url": "https://en.wikipedia.org/wiki/Opposition_to_AI_data_centers",
+        "quote": "a $14 billion project by developer Tract was withdrawn after local authorities blocked necessary rezoning"
+      },
+      "buyerRole": "Unknown tenant; Tract is the developer",
+      "buyerConfirmed": false,
+      "pathType": "none",
+      "pathNote": "No operator to reach until a tenant is named.",
+      "disqualifier": "Withdrawn: rezoning blocked, and no operator is named for the revised project.",
+      "assumedDealValue": 0,
+      "assumedWinRate": 0
+    }
+  ],
+  "pack": {
+    "targetId": "hyperion",
+    "title": "Hyperion supervised cable-swap pilot",
+    "baselineLabel": "Estimated technician hours per year on cable and reseat work at full staffing (estimate, not measured)",
+    "baselineValue": 90000,
+    "baselineUnit": "hours per year (estimate)",
+    "assumptions": [
+      "Rule of thumb: 1,000 permanent jobs x 30% hands-on technicians x 15% of time on cable and reseat work x 2,000 hours per year = 90,000 hours.",
+      "Only the 1,000 permanent jobs figure is sourced, and it applies at full operation, expected by 2036. The 30%, 15% and 2,000 figures are placeholders for Meta to replace.",
+      "No Watney speed or reliability figures are assumed; public reports say tested robots are slower than trained technicians."
+    ],
+    "successTest": "In one data hall, supervised robots take on enough cable swaps to cut technician hands-on hours for that task by {pct}%, with no increase in incidents, against a baseline measured before the pilot.",
+    "approvers": [
+      "Head of data center operations",
+      "Site reliability lead",
+      "Physical security and safety lead",
+      "Procurement lead"
+    ],
+    "risks": [
+      "Robots are publicly reported as slower than trained technicians and need supervision.",
+      "Battery limits can force mid-shift recharging.",
+      "Hyperion is still being built, so a live hall may not be available at first.",
+      "ABB and Kinova are in Meta's pilots too.",
+      "The Altoona pilot is not a signed commercial contract at scale."
+    ],
+    "pathToOrder": "Use Altoona results as the reference, agree a measured baseline in one Hyperion hall, run the supervised pilot, then review against the success test before any order for later halls."
+  },
+  "draft": {
+    "subject": "Cable work at Hyperion as the campus staffs up",
+    "claims": [
+      {
+        "text": "Hyperion is expected to reach 1,000 permanent jobs once both phases are fully operational.",
+        "url": "https://kpel965.com/meta-hyperion-data-center-expansion-richland/",
+        "quote": "Permanent jobs will double to 1,000 once both phases of the project are fully operational"
+      },
+      {
+        "text": "Our robots are built for cable replacement, power-cycling servers, reseating parts and inspecting equipment.",
+        "url": "https://valueaddvc.com/pulse/watney-robotics-80m-series-a-data-center-2026",
+        "quote": "Its robots are built for cable replacement, power-cycling servers, reseating parts and inspecting equipment"
+      },
+      {
+        "text": "Two of our dual-armed robots have been reported doing cable insertion and removal at Altoona since June 2025.",
+        "url": "https://tech-insider.org/meta-watney-robots-data-center-technicians-2026/",
+        "quote": "have been performing cable insertion and removal since June 2025"
+      },
+      {
+        "text": "Our robots can run a full data hall with no human supervision.",
+        "url": null,
+        "quote": null
+      }
+    ],
+    "ask": "Would a 20-minute call make sense to see whether one Hyperion hall could be a good supervised pilot?"
+  }
+}

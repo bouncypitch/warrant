@@ -1,0 +1,276 @@
+{
+  "company": "Path Robotics",
+  "act": "Factories",
+  "prepared": true,
+  "researchedOn": "2026-10-30",
+  "profile": {
+    "name": "Path Robotics",
+    "website": "https://www.path-robotics.com",
+    "summary": "Columbus, Ohio company selling autonomous welding for high-mix industrial parts, as robots-as-a-service cells and as contract welding capacity through Path Foundry.",
+    "assetType": "Steel fabrication plants, shipyards and heavy-equipment factories with recurring manual welding",
+    "buyerPersona": "VP of Operations or Plant Manager responsible for welding throughput",
+    "icp": [
+      { "label": "Industry", "value": "US steel fabrication, shipbuilding, heavy equipment and defense manufacturing", "confidence": 0.85 },
+      { "label": "Production profile", "value": "High-mix steel parts where fit-up varies from part to part", "confidence": 0.8 },
+      { "label": "Trigger", "value": "Public plant expansion or a welder hiring push", "confidence": 0.75 },
+      { "label": "Buying model", "value": "Prefers subscription or outsourced capacity to a capital purchase", "confidence": 0.55 }
+    ],
+    "competitors": ["Lincoln Electric", "Hirebotics", "Vectis Automation", "FANUC", "ABB Robotics", "Novarc"],
+    "expansion": ["Path Foundry contract welding capacity", "Rove mobile autonomous welding for large structures", "Shipbuilding and defense supply chains"]
+  },
+  "targets": [
+    {
+      "id": "southland",
+      "name": "Southland Steel Fabricators",
+      "kind": "Steel fabricator",
+      "location": "St. Helena Parish, Louisiana (Greensburg area, approx.)",
+      "lat": 30.83,
+      "lon": -90.67,
+      "fit": 88,
+      "reason": {
+        "text": "$25M expansion running through 2026 explicitly grows robotic welding, so the budget line and appetite already exist.",
+        "url": "https://www.plantservices.com/industry-news/news/55244378/steel-fabricator-invests-25m-to-expand-manufacturing-facility-in-louisiana",
+        "quote": "will increase robotic welding capacity by 50%"
+      },
+      "buyerRole": "VP of Operations",
+      "buyerConfirmed": true,
+      "pathType": "displacement",
+      "pathNote": "Southland already runs robotic welding, so Path would have to displace or sit alongside the current vendor, which is not publicly identified. No warm path is publicly sourced.",
+      "disqualifier": null,
+      "assumedDealValue": 600000,
+      "assumedWinRate": 0.2
+    },
+    {
+      "id": "wisconsin-heavy-fab",
+      "name": "Wisconsin Heavy Fabrication",
+      "kind": "Heavy steel fabricator",
+      "location": "101 S 16th Street, Manitowoc, Wisconsin (approx. coordinates)",
+      "lat": 44.09,
+      "lon": -87.66,
+      "fit": 82,
+      "reason": {
+        "text": "Hiring more than 100 people, welders included, at a former Broadwind site, which points to immediate capacity need.",
+        "url": "https://fox11online.com/news/business/wisconsin-heavy-fabrication-to-add-100-plus-jobs-with-hiring-events-in-manitowoc-broadwind-assemblers-welders-manufacturing-press-brake-painters-operators-work-employees",
+        "quote": "Wisconsin Heavy Fabrication is expanding operations and hiring more than 100 employees at its Manitowoc facility."
+      },
+      "buyerRole": "Plant Manager",
+      "buyerConfirmed": true,
+      "pathType": "direct",
+      "pathNote": "Cold outreach to plant leadership. No public relationship with Path was found.",
+      "disqualifier": null,
+      "assumedDealValue": 400000,
+      "assumedWinRate": 0.2
+    },
+    {
+      "id": "merrill-steel",
+      "name": "Merrill Steel",
+      "kind": "Steel fabricator",
+      "location": "Osceola, Arkansas (approx.)",
+      "lat": 35.7,
+      "lon": -89.97,
+      "fit": 78,
+      "reason": {
+        "text": "New greenfield plant with 108 jobs over three years, so the welding process may still be open to design.",
+        "url": "https://www.steelmarketupdate.com/2025/08/22/fabricator-merrill-steel-building-32m-facility-in-arkansas",
+        "quote": "The operation will create 108 new jobs over three years."
+      },
+      "buyerRole": "VP of Manufacturing",
+      "buyerConfirmed": true,
+      "pathType": "direct",
+      "pathNote": "Cold outreach timed to the plant build-out. No public relationship with Path was found.",
+      "disqualifier": null,
+      "assumedDealValue": 500000,
+      "assumedWinRate": 0.15
+    },
+    {
+      "id": "austal-mobile",
+      "name": "Austal USA",
+      "kind": "Shipyard",
+      "location": "Mobile, Alabama (approx.)",
+      "lat": 30.7,
+      "lon": -88.04,
+      "fit": 72,
+      "reason": {
+        "text": "New final assembly facility for large steel modules, with more than 1,000 jobs planned. The source dates from 2024.",
+        "url": "https://www.manufacturingdive.com/news/austal-usa-288-million-ship-plant-expansion-mobile-alabama-us-navy/722779/",
+        "quote": "The facility is expected to create 1,032 jobs over the next four years"
+      },
+      "buyerRole": "VP of Production",
+      "buyerConfirmed": true,
+      "pathType": "direct",
+      "pathNote": "Cold outreach. Navy qualification requirements are likely to lengthen any sale.",
+      "disqualifier": null,
+      "assumedDealValue": 900000,
+      "assumedWinRate": 0.1
+    },
+    {
+      "id": "marinette",
+      "name": "Fincantieri Marinette Marine",
+      "kind": "Shipyard",
+      "location": "Marinette, Wisconsin (approx.)",
+      "lat": 45.1,
+      "lon": -87.62,
+      "fit": 68,
+      "reason": {
+        "text": "About 400 workers added at Marinette in a 2025 hiring wave. The source does not mention welders specifically.",
+        "url": "https://gcaptain.com/fincantieri-adds-600-shipyard-workers-as-u-s-shipbuilding-renaissance-gains-steam",
+        "quote": "approximately 400 new employees at Fincantieri Marinette Marine in Wisconsin"
+      },
+      "buyerRole": "Director of Production",
+      "buyerConfirmed": true,
+      "pathType": "direct",
+      "pathNote": "Cold outreach. Naval welding qualification is an expected hurdle.",
+      "disqualifier": null,
+      "assumedDealValue": 800000,
+      "assumedWinRate": 0.1
+    },
+    {
+      "id": "jcb-san-antonio",
+      "name": "JCB",
+      "kind": "Heavy-equipment manufacturer",
+      "location": "San Antonio, Texas (approx.)",
+      "lat": 29.42,
+      "lon": -98.49,
+      "fit": 62,
+      "reason": {
+        "text": "New plant doubled to 1 million sq ft with 1,500 expected jobs. Global production standards may limit local vendor choice.",
+        "url": "https://www.forkliftaction.com/news/jcb-to-double-size-of-us-plant-after-tariff-announcement.aspx?n=31133",
+        "quote": "It is expected to employ 1,500 people"
+      },
+      "buyerRole": "Plant Director",
+      "buyerConfirmed": true,
+      "pathType": "direct",
+      "pathNote": "Cold outreach. Manufacturing decisions may sit with the UK parent.",
+      "disqualifier": null,
+      "assumedDealValue": 700000,
+      "assumedWinRate": 0.08
+    },
+    {
+      "id": "cat-sanford",
+      "name": "Caterpillar",
+      "kind": "Heavy-equipment manufacturer",
+      "location": "Sanford, North Carolina (approx.)",
+      "lat": 35.48,
+      "lon": -79.18,
+      "fit": 55,
+      "reason": {
+        "text": "New Sanford capacity for compact machines. The source gives no welding detail and no job count for the expansion.",
+        "url": "https://spectrumlocalnews.com/nc/charlotte/news/2026/09/30/caterpillar-investing--1-billion-in-lee-county-facility",
+        "quote": "increase production of compact track loaders and telehandlers"
+      },
+      "buyerRole": "Plant Manufacturing Manager",
+      "buyerConfirmed": true,
+      "pathType": "direct",
+      "pathNote": "Cold outreach into a large enterprise with established automation suppliers, so expect a long cycle.",
+      "disqualifier": null,
+      "assumedDealValue": 1000000,
+      "assumedWinRate": 0.05
+    },
+    {
+      "id": "falcon-steel",
+      "name": "Falcon Steel America",
+      "kind": "Steel fabricator",
+      "location": "Conroe, Texas (approx.)",
+      "lat": 30.31,
+      "lon": -95.46,
+      "fit": 40,
+      "reason": null,
+      "buyerRole": "Plant Manager",
+      "buyerConfirmed": false,
+      "pathType": "direct",
+      "pathNote": "A search listing described a plant acquisition and hiring, but the page returned 403 and could not be opened or dated. No quotable evidence, so this target is held back.",
+      "disqualifier": null,
+      "assumedDealValue": 400000,
+      "assumedWinRate": 0.1
+    },
+    {
+      "id": "oshkosh-defense",
+      "name": "Oshkosh Defense",
+      "kind": "Defense vehicle manufacturer",
+      "location": "Oshkosh, Wisconsin (approx.)",
+      "lat": 44.02,
+      "lon": -88.54,
+      "fit": 25,
+      "reason": {
+        "text": "Production layoffs point to excess labor rather than a welding capacity shortage.",
+        "url": "https://www.fox11online.com/news/local/oshkosh-defense-announces-layoffs-impacting-160-workers-starting-january-2026-jobs-loss-employement-production-wisconsin-military",
+        "quote": "Oshkosh Defense confirms it will lay off about 160 employees early next year."
+      },
+      "buyerRole": "VP of Operations",
+      "buyerConfirmed": true,
+      "pathType": "none",
+      "pathNote": "No credible opening while the company is cutting production roles.",
+      "disqualifier": "Layoffs of about 160 production positions effective January 5, 2026",
+      "assumedDealValue": 700000,
+      "assumedWinRate": 0.02
+    },
+    {
+      "id": "wabash-little-falls",
+      "name": "Wabash National",
+      "kind": "Truck body and trailer manufacturer",
+      "location": "Little Falls, Minnesota (approx.)",
+      "lat": 45.98,
+      "lon": -94.36,
+      "fit": 10,
+      "reason": {
+        "text": "This plant, which employed welders, is closing, so there is no site to sell into.",
+        "url": "https://www.startribune.com/little-falls-truck-manufacturer-will-close-56-workers-losing-jobs/601558464",
+        "quote": "plans to cease operations at the facility by this spring"
+      },
+      "buyerRole": "Plant Manager",
+      "buyerConfirmed": true,
+      "pathType": "none",
+      "pathNote": "No path, because the site is shutting down.",
+      "disqualifier": "Plant closure with 56 layoffs announced January 2026",
+      "assumedDealValue": 300000,
+      "assumedWinRate": 0
+    }
+  ],
+  "pack": {
+    "targetId": "southland",
+    "title": "Pilot Pack: one high-mix weld family at Southland Steel",
+    "baselineLabel": "Estimated fully loaded annual cost of one welder (estimate, not a Southland figure)",
+    "baselineValue": 69875,
+    "baselineUnit": "USD per welder per year",
+    "assumptions": [
+      "Rule of thumb: US median welder wage of $53,750 (BLS, May 2025, https://www.bls.gov/ooh/production/welders-cutters-solderers-and-brazers.htm) times an assumed 1.3 burden multiplier.",
+      "The 1.3 multiplier is a placeholder and should be replaced with Southland's actual labor cost.",
+      "Pilot scope is one recurring part family chosen by Southland.",
+      "No Path performance figure is assumed; results come only from the pilot's measurements."
+    ],
+    "successTest": "Pilot passes if welds per shift on the chosen part family improve by {pct}% against Southland's measured manual baseline, with parts passing Southland's existing quality inspection.",
+    "approvers": ["VP of Operations", "Quality Manager", "Plant Manager", "Finance Lead"],
+    "risks": [
+      "An incumbent robotic welding vendor may already cover this work.",
+      "The 2024 source may not reflect how much of the expansion is now committed.",
+      "Customer or code requirements may require weld procedure requalification."
+    ],
+    "pathToOrder": "Agree the part family and baseline, run the pilot, review results with the approvers, then decide on a subscription for cells or on Path Foundry capacity."
+  },
+  "draft": {
+    "subject": "Your robotic welding expansion in St. Helena Parish",
+    "claims": [
+      {
+        "text": "Your expansion is set to increase robotic welding capacity by 50%.",
+        "url": "https://www.plantservices.com/industry-news/news/55244378/steel-fabricator-invests-25m-to-expand-manufacturing-facility-in-louisiana",
+        "quote": "will increase robotic welding capacity by 50%"
+      },
+      {
+        "text": "Path builds Obsidian, an AI model made for welding that adapts in real time.",
+        "url": "https://www.path-robotics.com/",
+        "quote": "the first, purpose-built foundational AI model for welding"
+      },
+      {
+        "text": "Manufacturers can subscribe to Path's welding cells rather than buy equipment.",
+        "url": "https://path-robotics.com/path-robotics-unveils-path-foundry-a-new-frontier-in-contract-manufacturing-welding",
+        "quote": "subscribe to intelligent welding cells instead of buying equipment outright"
+      },
+      {
+        "text": "Most fabricators see full payback within the first year.",
+        "url": null,
+        "quote": null
+      }
+    ],
+    "ask": "Would you be open to a 20-minute call to pick one part family for a measured pilot?"
+  }
+}
