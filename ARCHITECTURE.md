@@ -39,7 +39,6 @@ Warm-path edges such as `previously_employed_at` are planned, and need a sourced
 | Neo4j | Stores runs and answers path queries | `src/lib/integrations/graph.ts` |
 | Hunter | Finds a contact for the top target | `src/lib/integrations/hunter.ts` |
 | Resend | Sends approved email to the test inbox | `src/app/api/approve/route.ts` |
-| Vapi | Runs the approved browser voice call | `src/components/App.tsx` |
 | Snyk | SAST and dependency scans in CI | `.github/workflows/security.yml` |
 
 ## Models

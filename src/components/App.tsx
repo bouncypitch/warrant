@@ -1,7 +1,6 @@
 "use client";
 
 import { type FormEvent, useEffect, useMemo, useRef, useState } from "react";
-import Vapi from "@vapi-ai/web";
 import { demos } from "@/lib/demos";
 import type { Claim, Draft, PilotPack, Profile, Run, RunEvent, Target } from "@/lib/types";
 import { evaluate, isSourced, SCOUT_CREDITS } from "@/lib/warrant";
@@ -12,7 +11,7 @@ const TABS = ["Map", "Leads", "Pilot Pack", "Review", "Approve", "Pipeline"] as 
 type Tab = (typeof TABS)[number];
 type Log = { text: string; hot?: boolean };
 type Hearing = { from: string; to: string; text: string; tone?: "good" | "bad" };
-type Delivery = { email: string; voiceAgent: Parameters<Vapi["start"]>[0] };
+type Delivery = { email: string };
 type Attempt = { text: string; supported: boolean; reason: string; checkedBy: string };
 
 type Session = {
@@ -492,39 +491,7 @@ function Review({ draft, hearing }: { draft: Draft | null; hearing: Hearing[] })
 
 function Approve({ company, hero, draft, approved, setApproved }: { company: string; hero: Target | null; draft: Draft | null; approved: boolean; setApproved: (value: boolean) => void }) {
   const [delivery, setDelivery] = useState<Delivery | null>(null);
-  const [lines, setLines] = useState<string[]>([]);
-  const [calling, setCalling] = useState(false);
   const [problem, setProblem] = useState<string | null>(null);
-  const voice = useRef<Vapi | null>(null);
-
-  useEffect(() => () => void voice.current?.stop(), []);
-
-  const toggleCall = async () => {
-    if (calling) {
-      await voice.current?.stop();
-      return;
-    }
-    const publicKey = process.env.NEXT_PUBLIC_VAPI_PUBLIC_KEY;
-    if (!publicKey || !delivery) {
-      setProblem("Voice isn't connected.");
-      return;
-    }
-    const client = new Vapi(publicKey);
-    voice.current = client;
-    setLines([]);
-    client.on("call-start", () => setCalling(true));
-    client.on("call-end", () => setCalling(false));
-    client.on("error", () => {
-      setCalling(false);
-      setProblem("The voice call failed.");
-    });
-    client.on("message", (message: { type: string; role?: string; transcript?: string; transcriptType?: string }) => {
-      if (message.type === "transcript" && message.transcriptType === "final") {
-        setLines((items) => [...items, `${message.role === "assistant" ? "Agent" : "You"}: ${message.transcript}`]);
-      }
-    });
-    await client.start(delivery.voiceAgent);
-  };
 
   if (!hero || !draft) return <p className="empty">Nothing is ready for approval yet.</p>;
   const decision = evaluate(hero);
@@ -575,18 +542,6 @@ function Approve({ company, hero, draft, approved, setApproved }: { company: str
           {approved && !delivery && !problem && "Approved. Delivering…"}
           {delivery && `Test email: ${delivery.email}.`}
         </p>
-        {delivery && (
-          <button className="ghost" onClick={toggleCall}>
-            {calling ? "End voice call" : "Start voice call"}
-          </button>
-        )}
-        {(calling || lines.length > 0) && (
-          <div className="panel log">
-            <div className="eyebrow">Live call transcript</div>
-            {lines.length === 0 && <p className="hot">Connecting…</p>}
-            {lines.map((line, index) => <p key={index} className="hot">{line}</p>)}
-          </div>
-        )}
       </div>
     </div>
   );

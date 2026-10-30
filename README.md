@@ -28,6 +28,5 @@ These are public examples with no affiliation. Their outreach is draft-only, sel
 
 - Sending needs a human approval and a passing warrant, enforced on the server.
 - Email goes only to `DEMO_INBOX`.
-- The voice agent runs in the browser and says it is an AI in a demonstration.
 
 See [ARCHITECTURE.md](ARCHITECTURE.md) for the design.

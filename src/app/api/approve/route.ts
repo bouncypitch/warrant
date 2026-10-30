@@ -1,5 +1,5 @@
 import { Resend } from "resend";
-import { DraftSchema, TargetSchema, type Draft, type Target } from "@/lib/types";
+import { DraftSchema, TargetSchema, type Draft } from "@/lib/types";
 import { evaluate, isSourced } from "@/lib/warrant";
 import { z } from "zod";
 
@@ -25,32 +25,12 @@ async function sendEmail(draft: Draft) {
   return error ? "failed" : "sent";
 }
 
-const voiceAgent = (company: string, target: Target, draft: Draft) => {
-  const facts = draft.claims.filter(isSourced).map((claim) => `- ${claim.text}`).join("\n");
-  return {
-    firstMessage: `Hi, I'm an AI agent in a live demonstration. I'd like to talk about a pilot for ${target.name}. Is now a good time?`,
-    model: {
-      provider: "anthropic",
-      model: process.env.VAPI_MODEL ?? "claude-sonnet-4-6",
-      messages: [
-        {
-          role: "system",
-          content: `You are an AI agent in a labeled demonstration of Warrant, showing how ${company} might discuss a pilot. Keep replies under two sentences.
-You may state only these sourced facts:
-${facts}
-Your goal is to agree what a successful pilot would prove. If asked for anything not listed, including numbers or guarantees, say "I don't have a source for that, so I won't claim it."`,
-        },
-      ],
-    },
-  };
-};
-
 export async function POST(request: Request) {
   const parsed = BodySchema.safeParse(await request.json());
   if (!parsed.success) {
     return Response.json({ error: "A person must approve a complete warrant." }, { status: 400 });
   }
-  const { company, target, draft } = parsed.data;
+  const { target, draft } = parsed.data;
   if (!evaluate(target).passed) {
     return Response.json({ error: "This warrant did not pass, so nothing was sent." }, { status: 409 });
   }
@@ -59,8 +39,5 @@ export async function POST(request: Request) {
     return Response.json({ error: "No sourced claims remain, so nothing was sent." }, { status: 409 });
   }
 
-  return Response.json({
-    email: await sendEmail(draft),
-    voiceAgent: voiceAgent(company, target, draft),
-  });
+  return Response.json({ email: await sendEmail(draft) });
 }
