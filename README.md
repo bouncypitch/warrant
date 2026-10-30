@@ -8,6 +8,18 @@ From site, to pilot, to first order.
 
 Warrant researches any robotics company, finds real target customers, and builds a Pilot Pack for the best one. It refuses to contact anyone until a lead has a cited reason, a path in, positive expected value, verified claims, and human approval.
 
+## Judging criteria
+
+| Criterion | Weight | What we built |
+|---|---|---|
+| ICP & Discovery | 20% | Inferred ICP with confidence scores, cited real targets, adjacent markets |
+| Enrichment & Outreach | 20% | Hunter lookup, signal-based drafts, claim review, required human approval |
+| Dashboard & Lead Management | 15% | Stage board, agent and human attribution, conversion view, refusal log |
+| Startup Viability | 15% | Physical AI focus, the pilot purgatory problem, usage-based credits |
+| Technical Execution | 10% | Deployed app, public repo, live end-to-end runs |
+| Band | +20 | Four agents in a shared room with a human decision |
+| Flexprice | +20 | Metered credits, with a wallet balance that limits runs |
+
 ## Run it
 
 ```bash
