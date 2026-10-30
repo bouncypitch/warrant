@@ -12,93 +12,137 @@
 <link rel="icon" href="img/logo.svg">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap">
 <style>
-:root{--bg:#09090f;--surface:#12121b;--line:#2a2a3a;--fg:#f4f4fa;--mut:#9a9ab0;--spectrum:linear-gradient(90deg,#8b5cf6,#3b82f6,#22d3ee,#34d399,#fbbf24,#fb7185);color-scheme:dark}
+:root{--bg:#09090f;--surface:#12121b;--surface2:#1a1a26;--line:#2a2a3a;--fg:#f4f4fa;--mut:#9a9ab0;--green:#34d399;--red:#fb7185;--spectrum:linear-gradient(90deg,#8b5cf6,#3b82f6,#22d3ee,#34d399,#fbbf24,#fb7185,#8b5cf6);color-scheme:dark}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.55 Geist,system-ui,sans-serif;-webkit-font-smoothing:antialiased;background-image:radial-gradient(900px 500px at 85% -5%,rgba(139,92,246,.2),transparent 65%);background-repeat:no-repeat}
-.wrap{max-width:1080px;margin:0 auto;padding-inline:max(20px,env(safe-area-inset-left)) max(20px,env(safe-area-inset-right))}
-header{padding-block:72px 40px}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.55 Geist,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+#progress{position:fixed;inset:0 auto auto 0;height:3px;width:100%;background:var(--spectrum);transform:scaleX(0);transform-origin:left;z-index:5}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:max(20px,env(safe-area-inset-left)) max(20px,env(safe-area-inset-right))}
+.hero{position:relative;min-height:100vh;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);align-items:center;gap:20px;background-image:radial-gradient(900px 600px at 85% 10%,rgba(139,92,246,.22),transparent 65%),radial-gradient(700px 500px at 0 100%,rgba(59,130,246,.14),transparent 65%);overflow:hidden}
 .brand{display:flex;align-items:center;gap:12px;font-weight:600;font-size:20px}
-.brand img{width:30px;height:30px}
-h1{font-weight:600;font-size:clamp(42px,8vw,84px);line-height:1.02;letter-spacing:-.045em;margin:36px 0 18px;text-wrap:balance}
-.grad{background:var(--spectrum);-webkit-background-clip:text;background-clip:text;color:transparent}
-.lede{font-size:21px;color:var(--mut);max-width:44ch;margin:0}
-.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
-.links a{color:var(--fg);text-decoration:none;font-weight:500;padding:11px 18px;border-radius:12px;border:1px solid var(--line);background:var(--surface)}
-.links a:first-child{background:var(--spectrum);border:0;color:#09090f}
-a:focus-visible{outline:2px solid #3b82f6;outline-offset:2px}
-video,figure img{display:block;width:100%;border-radius:16px;border:1px solid var(--line);background:var(--surface)}
-section{padding-block:56px;border-top:1px solid var(--line)}
-header+div{padding-bottom:64px}
-h2{font-weight:600;font-size:clamp(28px,4vw,40px);letter-spacing:-.03em;line-height:1.1;margin:0 0 12px;text-wrap:balance}
+.brand img{width:30px;height:30px;animation:spin 14s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+h1{font-weight:600;font-size:clamp(44px,6.6vw,84px);line-height:1.02;letter-spacing:-.045em;margin:30px 0 16px;text-wrap:balance}
+.grad{background:var(--spectrum);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:flow 8s linear infinite}
+@keyframes flow{to{background-position:-300% 0}}
+.lede{font-size:21px;color:var(--mut);max-width:40ch;margin:0}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.links a{color:var(--fg);text-decoration:none;font-weight:500;padding:11px 18px;border-radius:12px;border:1px solid var(--line);background:var(--surface);transition:transform .2s}
+.links a:hover{transform:translateY(-2px)}
+.links a:first-child{background:var(--spectrum);background-size:200% 100%;border:0;color:#09090f}
+a:focus-visible,button:focus-visible{outline:2px solid #3b82f6;outline-offset:2px}
+.globe{position:relative;height:min(82vh,680px);min-width:0}
+.globe canvas{position:absolute;inset:0;width:100%;height:100%}
+.hud{position:absolute;left:0;right:0;bottom:6px;display:grid;gap:10px;justify-items:center;text-align:center}
+.acts{display:flex;flex-wrap:wrap;justify-content:center;gap:6px}
+.acts button{font:inherit;font-size:14px;font-weight:500;color:var(--mut);background:rgba(26,26,38,.85);border:1px solid var(--line);border-radius:99px;padding:6px 14px;cursor:pointer}
+.acts button.on{color:#09090f;background:var(--fg);border-color:var(--fg)}
+#ticker{font-size:14px;color:var(--mut);min-height:22px}
+#ticker b{font-weight:500;color:var(--fg)}
+section{padding-block:80px;border-top:1px solid var(--line)}
+h2{font-weight:600;font-size:clamp(30px,4.4vw,46px);letter-spacing:-.03em;line-height:1.08;margin:0 0 12px;text-wrap:balance}
 .sub{color:var(--mut);margin:0 0 32px;max-width:62ch}
-.step{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.7fr);gap:32px;align-items:center;padding-block:22px}
-.step h3{font-size:22px;font-weight:600;letter-spacing:-.02em;margin:0 0 6px}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+video{display:block;width:100%;background:var(--surface)}
+.film video{border-radius:18px;border:1px solid var(--line);box-shadow:0 30px 90px rgba(59,130,246,.14)}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:40px}
+.stats div{padding:20px;border:1px solid var(--line);border-radius:16px;background:var(--surface)}
+.stats b{display:block;font-weight:600;font-size:clamp(34px,5vw,52px);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.stats span{font-size:14px;color:var(--mut)}
+.story{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.5fr);gap:48px}
+.step{min-height:72vh;display:flex;flex-direction:column;justify-content:center;opacity:.28;transition:opacity .4s}
+.step.on{opacity:1}
+.step small{font-size:13px;color:var(--mut);font-variant-numeric:tabular-nums}
+.step h3{font-size:30px;font-weight:600;letter-spacing:-.025em;margin:4px 0 8px}
 .step p{margin:0;color:var(--mut)}
-figure{margin:0}
+.step video{display:none;border-radius:14px;border:1px solid var(--line);margin-top:16px}
+.stage{position:sticky;top:12vh;height:min(76vh,calc((100vw - 300px)*.42));align-self:start;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--surface);box-shadow:0 30px 90px rgba(139,92,246,.16)}
+.stage video{position:absolute;inset:0;height:100%;object-fit:cover;object-position:top;opacity:0;transition:opacity .45s}
+.stage video.on{opacity:1}
 .pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-figcaption{font-size:14px;color:var(--mut);margin-top:8px}
-ol.road{list-style:none;margin:0;padding:0;display:grid;gap:0}
-.road li{display:grid;grid-template-columns:130px minmax(0,1fr);gap:20px;padding-block:14px;border-bottom:1px solid var(--line)}
-.road b{font-weight:600}.road span{color:var(--mut)}
+.pair video{border-radius:14px;border:1px solid var(--line)}
+figure{margin:0}figcaption{font-size:14px;color:var(--mut);margin-top:8px}
+.room{display:grid;gap:12px;max-width:760px;min-height:390px;align-content:start;padding:22px;border:1px solid var(--line);border-radius:16px;background:var(--surface)}
+.msg{display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;opacity:0;transform:translateY(10px);transition:opacity .4s,transform .4s}
+.msg.in{opacity:1;transform:none}
+.av{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:12px;font-weight:600;color:#09090f}
+.msg b{font-weight:600}.msg i{font-style:normal;color:#a78bfa}
 table{border-collapse:collapse;width:100%;min-width:620px}
 .scroll{overflow-x:auto}
 th,td{text-align:left;padding:13px 14px;border-bottom:1px solid var(--line);vertical-align:top}
 th{font-weight:500;color:var(--mut)}
-td:last-child{color:#34d399}
+td:last-child{color:var(--green)}
+ol.road{list-style:none;margin:0;padding:0 0 0 26px;position:relative;display:grid;gap:22px}
+ol.road::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:2px;background:var(--spectrum);background-size:100% 100%;transform:scaleY(var(--road,0));transform-origin:top}
+.road li{position:relative}.road li::before{content:"";position:absolute;left:-26px;top:7px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid #8b5cf6}
+.road b{display:block;font-weight:600}.road span{color:var(--mut)}
 .tech{display:flex;flex-wrap:wrap;gap:8px}
 .tech span{font-size:14px;padding:5px 12px;border-radius:99px;background:var(--surface);border:1px solid var(--line)}
 .note{font-size:14px;color:var(--mut);margin-top:14px}
 footer{padding-block:32px 56px;color:var(--mut);font-size:14px;border-top:1px solid var(--line)}
-@media (max-width:760px){.step,.pair{grid-template-columns:minmax(0,1fr);gap:14px}.road li{grid-template-columns:minmax(0,1fr);gap:2px}header{padding-top:40px}}
+@media (max-width:860px){
+.hero{grid-template-columns:minmax(0,1fr);padding-top:48px}.globe{height:440px}
+.story{display:block}.stage{display:none}.step{min-height:0;opacity:1;padding-block:22px}.step video{display:block}
+.pair,.stats{grid-template-columns:minmax(0,1fr)}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}.reveal,.msg{opacity:1;transform:none}}
 </style>
 </head>
 <body>
+<div id="progress"></div>
 <div class="wrap">
-<header>
-  <div class="brand"><img src="img/logo.svg" alt="">Warrant</div>
-  <h1>Robots don't sell like <span class="grad">software.</span></h1>
-  <p class="lede">The GTM engine for Physical AI. From site, to pilot, to first order.</p>
-  <div class="links">
-    <a href="https://warrant-sepia.vercel.app">Try the app</a>
-    <a href="https://github.com/bouncypitch/warrant">View the code</a>
+<header class="hero">
+  <div>
+    <div class="brand"><img src="img/logo.svg" alt="">Warrant</div>
+    <h1>Robots don't sell like <span class="grad">software.</span></h1>
+    <p class="lede">The GTM engine for Physical AI. From site, to pilot, to first order.</p>
+    <div class="links"><a href="https://warrant-sepia.vercel.app">Try the app</a><a href="#film">Watch the demo</a><a href="https://github.com/bouncypitch/warrant">View the code</a></div>
+  </div>
+  <div class="globe">
+    <canvas id="globe" aria-label="Globe of real target locations, green for passed and red for refused"></canvas>
+    <div class="hud"><div class="acts" id="acts"></div><div id="ticker" aria-live="off"></div></div>
   </div>
 </header>
-<div><video controls preload="metadata" poster="img/social-preview.png" src="https://warrant-sepia.vercel.app/demo/warrant-demo.mp4"></video></div>
+<div class="film reveal" id="film"><video controls preload="metadata" poster="img/social-preview.png" src="https://warrant-sepia.vercel.app/demo/warrant-demo.mp4"></video>
+<div class="stats"><div><b data-count="30">0</b><span>Real targets in the demos</span></div><div><b data-count="12">0</b><span>Refused before any email</span></div><div><b data-count="90" data-prefix="~" data-suffix="s">0</b><span>For a live run on a new company</span></div></div></div>
 
-<section>
+<section class="reveal" style="margin-top:80px">
   <h2>The problem is pilot purgatory.</h2>
   <p class="sub">Robotics deals involve many approvers, long cycles, and site-specific proof. A customer can keep running trials and never issue a real order. General GTM tools help find contacts. Warrant helps earn the pilot.</p>
 </section>
 
 <section>
-  <h2>How it works</h2>
-  <p class="sub">Named companies are public examples with no affiliation. Their outreach is draft-only.</p>
-  <div class="step"><div><h3>Find</h3><p>Name a robotics company. Agents infer its customer and scout real targets.</p></div><figure><img src="img/map.jpg" alt="Globe showing solar project targets that passed or were refused" loading="lazy"></figure></div>
-  <div class="step"><div><h3>Refuse</h3><p>Each lead needs a cited reason, a path in, positive expected value, and no disqualifier.</p></div><figure><img src="img/leads.jpg" alt="Table of targets with sourced reasons and decisions" loading="lazy"></figure></div>
-  <div class="step"><div><h3>Plan</h3><p>The top target gets a Pilot Pack with a success test, approvers, risks, and a path to order.</p></div><figure><img src="img/pack.jpg" alt="Pilot Pack with estimates and an adjustable assumption" loading="lazy"></figure></div>
-  <div class="step"><div><h3>Verify</h3><p>A Reviewer checks claims against sources. Try to make it lie, and the claim is blocked.</p></div><figure><img src="img/review.jpg" alt="Draft with a struck claim and a blocked false claim" loading="lazy"></figure></div>
-  <div class="step"><div><h3>Approve</h3><p>The server blocks sending until the warrant passes and a person approves it.</p></div><figure><img src="img/approve.jpg" alt="Warrant checks and approval button" loading="lazy"></figure></div>
-  <div class="step"><div><h3>Track</h3><p>See each stage, who acted, spend, and a log of everything it refused to do.</p></div><figure><img src="img/pipeline.jpg" alt="Pipeline board and refusal log" loading="lazy"></figure></div>
+  <h2 class="reveal">How it works</h2>
+  <p class="sub reveal">Real product footage. Named companies are public examples with no affiliation, and their outreach is draft-only.</p>
+  <div class="story"><div id="steps">
+<div class="step" data-clip="map"><small>01</small><h3>Find</h3><p>Name a robotics company. Agents infer its customer and scout real targets.</p><video muted loop playsinline preload="none" src="clips/map.mp4" poster="img/map.jpg"></video></div>
+<div class="step" data-clip="leads"><small>02</small><h3>Refuse</h3><p>Each lead needs a cited reason, a path in, positive expected value, and no disqualifier.</p><video muted loop playsinline preload="none" src="clips/leads.mp4" poster="img/leads.jpg"></video></div>
+<div class="step" data-clip="pack"><small>03</small><h3>Plan</h3><p>The top target gets a Pilot Pack with a success test, approvers, risks, and a path to order.</p><video muted loop playsinline preload="none" src="clips/pack.mp4" poster="img/pack.jpg"></video></div>
+<div class="step" data-clip="review"><small>04</small><h3>Verify</h3><p>A Reviewer checks claims against sources. Try to make it lie, and the claim is blocked.</p><video muted loop playsinline preload="none" src="clips/review.mp4" poster="img/review.jpg"></video></div>
+<div class="step" data-clip="approve"><small>05</small><h3>Approve</h3><p>The server blocks sending until the warrant passes and a person approves it.</p><video muted loop playsinline preload="none" src="clips/approve.mp4" poster="img/approve.jpg"></video></div>
+<div class="step" data-clip="pipeline"><small>06</small><h3>Track</h3><p>See each stage, who acted, spend, and a log of everything it refused to do.</p><video muted loop playsinline preload="none" src="clips/pipeline.mp4" poster="img/pipeline.jpg"></video></div>
+</div><div class="stage" id="stage"><video muted loop playsinline preload="metadata" data-clip="map" src="clips/map.mp4" poster="img/map.jpg"></video><video muted loop playsinline preload="metadata" data-clip="leads" src="clips/leads.mp4" poster="img/leads.jpg"></video><video muted loop playsinline preload="metadata" data-clip="pack" src="clips/pack.mp4" poster="img/pack.jpg"></video><video muted loop playsinline preload="metadata" data-clip="review" src="clips/review.mp4" poster="img/review.jpg"></video><video muted loop playsinline preload="metadata" data-clip="approve" src="clips/approve.mp4" poster="img/approve.jpg"></video><video muted loop playsinline preload="metadata" data-clip="pipeline" src="clips/pipeline.mp4" poster="img/pipeline.jpg"></video></div></div>
 </section>
 
 <section>
-  <h2>One engine, many robots.</h2>
-  <p class="sub">The AI buildout needs power, compute, and factories.</p>
+  <h2 class="reveal">One engine, many robots.</h2>
+  <p class="sub reveal">The AI buildout needs power, compute, and factories.</p>
   <div class="pair">
-    <figure><img src="img/compute.jpg" alt="Globe of data center campus targets" loading="lazy"><figcaption>Compute: Watney Robotics and AI data centers</figcaption></figure>
-    <figure><img src="img/factories.jpg" alt="Globe of factory targets" loading="lazy"><figcaption>Factories: Path Robotics and US fabricators</figcaption></figure>
+    <figure class="reveal"><video data-auto muted loop playsinline preload="none" src="clips/compute.mp4" poster="img/compute.jpg"></video><figcaption>Compute: Watney Robotics and AI data centers</figcaption></figure>
+    <figure class="reveal"><video data-auto muted loop playsinline preload="none" src="clips/factories.mp4" poster="img/factories.jpg"></video><figcaption>Factories: Path Robotics and US fabricators</figcaption></figure>
   </div>
 </section>
 
 <section>
-  <h2>Agents, working in the open.</h2>
-  <p class="sub">Planner, Builder, Reviewer, and Security post in a shared Band room, with a human in the loop.</p>
-  <figure><img src="img/band.jpg" alt="Band room with four agents and a human reviewing a draft" loading="lazy"></figure>
+  <h2 class="reveal">Agents, working in the open.</h2>
+  <p class="sub reveal">A replay of a real Band room, with a human in the loop.</p>
+  <div class="room" id="room"></div>
 </section>
 
 <section>
-  <h2>How it compares</h2>
-  <div class="scroll"><table>
+  <h2 class="reveal">How it compares</h2>
+  <div class="scroll reveal"><table>
     <tr><th></th><th>Clay</th><th>AI SDR tools</th><th>Warrant</th></tr>
     <tr><td>Built around</td><td>Companies and people</td><td>Contacts and sequences</td><td>A site and a pilot plan</td></tr>
     <tr><td>Data coverage</td><td>Far ahead</td><td>Broad</td><td>Focused research</td></tr>
@@ -109,26 +153,21 @@ footer{padding-block:32px 56px;color:var(--mut);font-size:14px;border-top:1px so
 </section>
 
 <section>
-  <h2>How it came together</h2>
-  <p class="sub">One builder, one day, at a hackathon.</p>
-  <ol class="road">
-    <li><b>The brief</b><span>Build an end-to-end AI GTM engine.</span></li>
-    <li><b>The research</b><span>Mapped AI SDRs, Clay, and what buyers distrust.</span></li>
-    <li><b>The focus</b><span>Narrowed from every B2B company to Physical AI.</span></li>
-    <li><b>The insight</b><span>Site location alone was too weak. Pilot purgatory was the real pain.</span></li>
-    <li><b>The test</b><span>Ran blind discovery and found gaps in search-only targeting.</span></li>
-    <li><b>The build</b><span>Live research, warrant rules, a globe, and three cited demos.</span></li>
-    <li><b>The hard part</b><span>Live tests caught wrong targets and an over-strict Reviewer. Both were fixed.</span></li>
-    <li><b>The launch</b><span>Connected the services, deployed, and made this video.</span></li>
-  </ol>
+  <h2 class="reveal">How it came together</h2>
+  <p class="sub reveal">One builder, one day, at a hackathon.</p>
+  <ol class="road" id="road"><li class="reveal"><b>The brief</b><span>Build an end-to-end AI GTM engine.</span></li><li class="reveal"><b>The research</b><span>Mapped AI SDRs, Clay, and what buyers distrust.</span></li><li class="reveal"><b>The focus</b><span>Narrowed from every B2B company to Physical AI.</span></li><li class="reveal"><b>The insight</b><span>Site location alone was too weak. Pilot purgatory was the real pain.</span></li><li class="reveal"><b>The test</b><span>Ran blind discovery and found gaps in search-only targeting.</span></li><li class="reveal"><b>The build</b><span>Live research, warrant rules, a globe, and three cited demos.</span></li><li class="reveal"><b>The hard part</b><span>Live tests caught wrong targets and an over-strict Reviewer. Both were fixed.</span></li><li class="reveal"><b>The launch</b><span>Connected the services, deployed, and made this video.</span></li></ol>
 </section>
 
-<section>
+<section class="reveal">
   <h2>Built with</h2>
   <div class="tech"><span>Next.js</span><span>Claude</span><span>Band</span><span>Flexprice</span><span>Neo4j</span><span>Hunter</span><span>Resend</span><span>ElevenLabs</span><span>Vercel</span></div>
 </section>
 
-<footer>Sample figures and deal values are labeled assumptions.</footer>
+<footer>Deal values and win rates are labeled assumptions.</footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/d3-array@3.2.4/dist/d3-array.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3-geo@3.1.1/dist/d3-geo.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
